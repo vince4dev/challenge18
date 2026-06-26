@@ -29,24 +29,14 @@ const getFocusableElements = () =>
   );
 
 /* ==================================================================
-  Tab‑index handling (mobile & tablet)
-================================================================== */
-function toggleTabIndex(enable) {
-  const elements = navMenu.querySelectorAll(focusableSelectors.join(","));
-  elements.forEach((el) =>
-    enable ? el.setAttribute("tabindex", "-1") : el.removeAttribute("tabindex"),
-  );
-}
-
-/* ==================================================================
   Loading
 ================================================================== */
 /* Initialise on load */
 document.addEventListener("DOMContentLoaded", () =>
-  toggleTabIndex(isMobileView()),
+  syncFocusState(!isMobileView()),
 );
 /* Update on resize */
-window.addEventListener("resize", () => toggleTabIndex(isMobileView()));
+window.addEventListener("resize", () => syncFocusState(!isMobileView()));
 
 /* ==================================================================
   Overlay
@@ -54,7 +44,7 @@ window.addEventListener("resize", () => toggleTabIndex(isMobileView()));
 overlay.addEventListener("click", closeMenu);
 
 /* ==================================================================
-  Open / close handlers
+  Open / close Menu
 ================================================================== */
 navToggle.addEventListener("click", openMenu);
 navClose.addEventListener("click", closeMenu);
@@ -66,7 +56,7 @@ function openMenu() {
   navToggle.setAttribute("aria-expanded", "true");
 
   /* Focus‑trap only when the menu is actually *opened* */
-  if (isMobileView()) setFocusableState(true);
+  if (isMobileView()) syncFocusState(true);
 
   const focusables = getFocusableElements();
   if (focusables.length) {
@@ -84,9 +74,9 @@ function closeMenu() {
   navToggle.setAttribute("aria-expanded", "false");
 
   /* Focus‑trap only when the menu is actually *closed* */
-  if (isMobileView()) setFocusableState(false);
+  if (isMobileView()) syncFocusState(false);
 
-  document.addEventListener("keydown", trapFocus);
+  document.removeEventListener("keydown", trapFocus);
 }
 
 /* ==================================================================
@@ -113,11 +103,11 @@ function trapFocus(e) {
 }
 
 /* ==================================================================
-  Set focusable state (mobile & tablet)
+  Set focusable state
 ================================================================== */
-function setFocusableState(isOpen) {
-  const focusables = getFocusableElements();
-  focusables.forEach((el) =>
-    isOpen ? el.removeAttribute("tabindex") : el.setAttribute("tabindex", "-1"),
-  );
+function syncFocusState(isOpen) {
+  const elements = navMenu.querySelectorAll(focusableSelectors.join(","));
+  elements.forEach((el) => {
+    el.setAttribute("tabindex", isOpen ? "" : "-1");
+  });
 }
