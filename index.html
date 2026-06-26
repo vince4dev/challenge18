@@ -15,23 +15,33 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="./assets/css/style.css" />
 
+    <!-- Javascript -->
+    <script src="./assets/js/main.js" defer></script>
+
     <title>Frontend Mentor | News homepage</title>
   </head>
 
   <body>
+    <!--=== OVERLAY ===-->
+    <div id="overlay" class="overlay"></div>
     <!--=== HEADER ===-->
-    <header class="header">
+    <header class="header container">
       <!--=== NAVBAR ===-->
-      <nav class="nav">
+      <nav class="nav u-flex">
         <!-- LOGO -->
         <a href="#" class="nav__logo">
           <img src="./assets/images/logo.svg" alt="" />
         </a>
 
         <!-- MENU -->
-        <div class="menu">
+        <div id="nav-menu" class="nav__menu">
+          <!-- CLOSE BUTTON -->
+          <button id="nav-close" class="nav__close" aria-label="Close menu">
+            <img src="./assets/images/icon-menu-close.svg" alt="" />
+          </button>
+
           <!-- LIST -->
-          <ul class="nav__list">
+          <ul role="list" class="nav__list u-flex">
             <li class="nav__item">
               <a href="#home" class="nav__link">Home</a>
             </li>
@@ -48,57 +58,66 @@
               <a href="#categories" class="nav__link">Categories</a>
             </li>
           </ul>
-
-          <!-- CLOSE BUTTON -->
-          <div id="nav-close" class="nav__close">
-            <img src="./assets/images/icon-menu-close.svg" alt="" />
-          </div>
         </div>
 
         <!-- TOGGLE BUTTON -->
-        <div id="nav-toggle" class="nav__toggle">
+        <button id="nav-toggle" class="nav__toggle" aria-label="Open menu">
           <img src="./assets/images/icon-menu.svg" alt="" />
-        </div>
+        </button>
       </nav>
     </header>
 
     <!--=== MAIN ===-->
-    <main class="main">
-      <section class="home">
+    <main class="container">
+      <section class="cards u-grid u-gap-64">
         <!-- TITLE -->
-        <article class="card__title">
-          <img src="./assets/images/image-web-3-mobile.jpg" alt="" />
-          <div class="">
+        <article class="card__title u-grid u-gap-24">
+          <picture>
+            <source
+              srcset="./assets/images/image-web-3-desktop.jpg"
+              media="(min-width: 768px)"
+            />
+            <img
+              src="./assets/images/image-web-3-mobile.jpg"
+              class="card__title-img"
+              alt=""
+            />
+          </picture>
+          <div class="card__title-content u-grid u-gap-24">
             <h1>The Bright Future of Web 3.0?</h1>
-            <p>
-              We dive into the next evolution of the web that claims to put the
-              power of the platforms back into the hands of the people. But is
-              it really fulfilling its promise?
-            </p>
-            <button type="button">READ MORE</button>
+            <div class="card__title-txt u-grid u-gap-24">
+              <p>
+                We dive into the next evolution of the web that claims to put
+                the power of the platforms back into the hands of the people.
+                But is it really fulfilling its promise?
+              </p>
+              <button class="card__title-btn" type="button">READ MORE</button>
+            </div>
           </div>
         </article>
 
         <!-- NEWS -->
-        <article class="card__new">
+        <article class="card__new u-grid u-gap-32">
           <h2>New</h2>
-          <div>
+          <div class="u-grid u-gap-32">
             <div>
-              <h3>Hydrogen VS Electric Cars</h3>
-              <p>Will hydrogen-fueled cars ever catch up to EVs?</p>
+              <a href="#">Hydrogen VS Electric Cars</a>
+              <p class="u-m-t-8">
+                Will hydrogen-fueled cars ever catch up to EVs?
+              </p>
             </div>
             <hr />
             <div>
-              <h3>The Downsides of AI Artistry</h3>
-              <p>
+              <a href="#">The Downsides of AI Artistry</a>
+              <p class="u-m-t-8">
                 What are the possible adverse effects of on-demand AI image
                 generation?
               </p>
             </div>
             <hr />
             <div>
-              <h3>Is VC Funding Drying Up?</h3>
-              <p>
+              <a href="#">Is VC Funding Drying Up?</a>
+              <p class="u-m-t-8">
                 Private funding by VC firms is down 50% YOY. We take a look at
                 what that means.
               </p>
@@ -107,28 +126,28 @@
         </article>
 
         <!-- ARTICLES -->
-        <article class="card__article">
-          <div>
+        <article class="card__article u-grid u-gap-32">
+          <div class="u-flex u-gap-24">
             <img src="./assets/images/image-retro-pcs.jpg" alt="" />
-            <div>
-              <h2>01</h2>
-              <h3>Reviving Retro PCs</h3>
+            <div class="u-grid u-gap-8">
+              <span>01</span>
+              <a href="#">Reviving Retro PCs</a>
               <p>What happens when old PCs are given modern upgrades?</p>
             </div>
           </div>
-          <div>
+          <div class="u-flex u-gap-24">
             <img src="./assets/images/image-top-laptops.jpg" alt="" />
-            <div>
-              <h2>02</h2>
-              <h3>Top 10 Laptops of 2022</h3>
+            <div class="u-grid u-gap-8">
+              <span>02</span>
+              <a href="#">Top 10 Laptops of 2022</a>
               <p>Our best picks for various needs and budgets.</p>
             </div>
           </div>
-          <div>
+          <div class="u-flex u-gap-24">
             <img src="./assets/images/image-gaming-growth.jpg" alt="" />
-            <div>
-              <h2>03</h2>
-              <h3>The Growth of Gaming</h3>
+            <div class="u-grid u-gap-8">
+              <span>03</span>
+              <a href="#">The Growth of Gaming</a>
               <p>How the pandemic has sparked fresh opportunities.</p>
             </div>
           </div>
